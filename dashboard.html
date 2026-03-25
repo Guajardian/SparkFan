@@ -233,6 +233,349 @@
   }
   .save-status.show { opacity: 1; }
 
+  /* ── User management ── */
+  .users-section {
+    background: #12151c;
+    border: 1px solid #1e2230;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 24px;
+  }
+  .users-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .add-user-form {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .add-user-form input {
+    flex: 1;
+    padding: 10px 12px;
+    background: #0a0c10;
+    border: 1px solid #1e2230;
+    border-radius: 8px;
+    color: #e2e6ee;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .add-user-form input:focus { border-color: #3b82f6; }
+  .add-user-form button {
+    padding: 10px 18px;
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .add-user-form button:hover { background: #2563eb; }
+  .user-list {
+    list-style: none;
+  }
+  .user-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border: 1px solid #1e2230;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    background: #0a0c10;
+  }
+  .user-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: #e2e6ee;
+  }
+  .user-you {
+    font-size: 11px;
+    color: #3b82f6;
+    margin-left: 8px;
+    font-weight: 600;
+  }
+  .delete-btn {
+    padding: 4px 12px;
+    background: none;
+    border: 1px solid #1e2230;
+    border-radius: 6px;
+    color: #6b7280;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .delete-btn:hover { color: #ef4444; border-color: #ef4444; }
+  .user-msg {
+    font-size: 13px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: none;
+  }
+  .user-msg.error {
+    display: block;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.3);
+    color: #f87171;
+  }
+  .user-msg.success {
+    display: block;
+    background: rgba(34,197,94,0.1);
+    border: 1px solid rgba(34,197,94,0.3);
+    color: #22c55e;
+  }
+
+  /* ── System stats ── */
+  .sys-stats {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #12151c;
+    border: 1px solid #1e2230;
+    border-radius: 10px;
+    padding: 14px 20px;
+    margin-bottom: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+  .sys-item { display: flex; align-items: center; gap: 6px; }
+  .sys-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #6b7280;
+  }
+  .sys-value { color: #e2e6ee; font-weight: 600; }
+  .sys-unit { color: #6b7280; font-size: 11px; }
+  .sys-divider { width: 1px; height: 20px; background: #1e2230; }
+  @media (max-width: 640px) {
+    .sys-stats { flex-wrap: wrap; gap: 10px; }
+    .sys-divider { display: none; }
+  }
+
+  /* ── Fan profiles ── */
+  .profiles-section {
+    background: #12151c;
+    border: 1px solid #1e2230;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .profiles-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .profile-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 16px 12px;
+    background: transparent;
+    border: 1px solid #1e2230;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.25s;
+    color: #6b7280;
+    font-family: 'Outfit', sans-serif;
+  }
+  .profile-btn:hover { border-color: #3b4252; color: #c8ccd4; }
+  .profile-btn.active {
+    border-color: #3b82f6;
+    background: rgba(59,130,246,0.08);
+    color: #e2e6ee;
+    box-shadow: 0 0 0 1px rgba(59,130,246,0.3);
+  }
+  .profile-icon { font-size: 24px; line-height: 1; }
+  .profile-name { font-weight: 600; font-size: 14px; }
+  .profile-desc {
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    opacity: 0.7;
+  }
+  @media (max-width: 480px) {
+    .profiles-row { gap: 6px; }
+    .profile-btn { padding: 12px 6px; }
+    .profile-name { font-size: 12px; }
+    .profile-desc { font-size: 9px; }
+  }
+
+  /* ── Manual override ── */
+  .override-section {
+    background: #12151c;
+    border: 1px solid #1e2230;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .override-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .override-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .override-controls input[type=range] {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    background: #1e2230;
+    border-radius: 3px;
+    outline: none;
+  }
+  .override-controls input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #3b82f6;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+  }
+  .override-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 600;
+    color: #e2e6ee;
+    min-width: 44px;
+    text-align: right;
+  }
+
+  /* ── Toggle switch ── */
+  .toggle {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .toggle input { display: none; }
+  .toggle-slider {
+    position: absolute;
+    inset: 0;
+    background: #1e2230;
+    border-radius: 12px;
+    transition: background 0.3s;
+  }
+  .toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 3px;
+    bottom: 3px;
+    background: #6b7280;
+    border-radius: 50%;
+    transition: all 0.3s;
+  }
+  .toggle input:checked + .toggle-slider { background: #3b82f6; }
+  .toggle input:checked + .toggle-slider::before {
+    transform: translateX(20px);
+    background: #fff;
+  }
+
+  /* ── Humidity row ── */
+  .humidity-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+  @media (max-width: 640px) {
+    .humidity-row { flex-direction: column; }
+  }
+
+  /* ── Theme toggle ── */
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .theme-btn {
+    background: none;
+    border: 1px solid #1e2230;
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s;
+  }
+  .theme-btn:hover { color: #e2e6ee; border-color: #3b4252; }
+
+  /* ── Light theme ── */
+  html.light body { background: #f5f7fa; color: #374151; }
+  html.light .header { border-color: #e5e7eb; }
+  html.light .logo { color: #2563eb; }
+  html.light .status-text,
+  html.light .stat-label,
+  html.light .stat-unit,
+  html.light .sys-label,
+  html.light .sys-unit,
+  html.light .fan-bar-labels,
+  html.light .setting-hint,
+  html.light .last-updated,
+  html.light .profile-desc { color: #9ca3af; }
+  html.light .logout-btn,
+  html.light .theme-btn,
+  html.light .delete-btn { border-color: #e5e7eb; color: #9ca3af; }
+  html.light .logout-btn:hover,
+  html.light .theme-btn:hover { color: #374151; border-color: #d1d5db; }
+  html.light .stat-card,
+  html.light .chart-section,
+  html.light .fan-bar-section,
+  html.light .settings-section,
+  html.light .users-section,
+  html.light .profiles-section,
+  html.light .override-section,
+  html.light .sys-stats { background: #fff; border-color: #e5e7eb; }
+  html.light .stat-value,
+  html.light .section-title,
+  html.light .user-name,
+  html.light .sys-value,
+  html.light .override-value { color: #1f2937; }
+  html.light .setting-group input,
+  html.light .add-user-form input {
+    background: #f9fafb;
+    border-color: #e5e7eb;
+    color: #1f2937;
+  }
+  html.light .fan-bar-track { background: #e5e7eb; }
+  html.light .user-item { background: #f9fafb; border-color: #e5e7eb; }
+  html.light .delete-btn:hover { color: #ef4444; border-color: #ef4444; }
+  html.light .profile-btn { border-color: #e5e7eb; color: #9ca3af; }
+  html.light .profile-btn:hover { border-color: #d1d5db; color: #374151; }
+  html.light .profile-btn.active {
+    border-color: #3b82f6;
+    background: rgba(59,130,246,0.06);
+    color: #1f2937;
+    box-shadow: 0 0 0 1px rgba(59,130,246,0.2);
+  }
+  html.light .toggle-slider { background: #e5e7eb; }
+  html.light .toggle-slider::before { background: #9ca3af; }
+  html.light .override-controls input[type=range] { background: #e5e7eb; }
+  html.light .sys-divider { background: #e5e7eb; }
+
   /* ── Timestamp ── */
   .last-updated {
     text-align: center;
@@ -251,7 +594,12 @@
     <span class="status-dot"></span>
     <span class="status-text">Controller active</span>
   </div>
-  <a href="/logout" class="logout-btn">Log out</a>
+  <div class="header-right">
+    <button class="theme-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+      <svg id="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <a href="/logout" class="logout-btn">Log out</a>
+  </div>
 </div>
 
 <div class="container">
@@ -273,6 +621,64 @@
     <div class="stat-card fan">
       <div class="stat-label">Fan speed</div>
       <div class="stat-value"><span id="fan-speed">--</span><span class="stat-unit">%</span></div>
+    </div>
+  </div>
+
+  <!-- System stats -->
+  <div class="sys-stats">
+    <div class="sys-item">
+      <span class="sys-label">CPU</span>
+      <span class="sys-value" id="cpu-temp">--</span>
+      <span class="sys-unit">°C</span>
+    </div>
+    <div class="sys-divider"></div>
+    <div class="sys-item">
+      <span class="sys-label">Uptime</span>
+      <span class="sys-value" id="sys-uptime">--</span>
+    </div>
+    <div class="sys-divider"></div>
+    <div class="sys-item">
+      <span class="sys-label">Memory</span>
+      <span class="sys-value" id="sys-mem">--</span>
+    </div>
+  </div>
+
+  <!-- Fan profiles -->
+  <div class="profiles-section">
+    <div class="section-title">Fan profile</div>
+    <div class="profiles-row">
+      <button class="profile-btn" data-profile="silent" onclick="applyProfile('silent')">
+        <span class="profile-icon">🌙</span>
+        <span class="profile-name">Silent</span>
+        <span class="profile-desc">30–50°C · 15% min</span>
+      </button>
+      <button class="profile-btn active" data-profile="default" onclick="applyProfile('default')">
+        <span class="profile-icon">⚖️</span>
+        <span class="profile-name">Default</span>
+        <span class="profile-desc">25–45°C · 20% min</span>
+      </button>
+      <button class="profile-btn" data-profile="performance" onclick="applyProfile('performance')">
+        <span class="profile-icon">⚡</span>
+        <span class="profile-name">Performance</span>
+        <span class="profile-desc">20–40°C · 30% min</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Manual override -->
+  <div class="override-section">
+    <div class="override-header">
+      <div class="section-title" style="margin-bottom:0">Manual override</div>
+      <label class="toggle">
+        <input type="checkbox" id="override-toggle" onchange="toggleOverride()">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <div class="override-controls" id="override-controls" style="display:none">
+      <input type="range" id="override-speed" min="0" max="100" value="50"
+             oninput="updateOverrideLabel(this.value)"
+             onchange="setOverrideSpeed()">
+      <span class="override-value" id="override-value">50%</span>
     </div>
   </div>
 
@@ -322,10 +728,39 @@
         <div class="setting-hint">How often the sensor is read</div>
       </div>
     </div>
+    <div class="section-title" style="margin-top:20px">Humidity trigger</div>
+    <div class="humidity-row">
+      <div class="setting-group" style="flex:1">
+        <label>Humidity threshold (%)</label>
+        <input type="number" id="set-humidity-high" min="0" max="100" step="1">
+        <div class="setting-hint">Fans activate when humidity exceeds this</div>
+      </div>
+      <div class="setting-group" style="display:flex;align-items:center;padding-top:22px;gap:12px">
+        <label class="toggle" style="flex-shrink:0">
+          <input type="checkbox" id="humidity-trigger-toggle">
+          <span class="toggle-slider"></span>
+        </label>
+        <span style="font-size:13px">Enabled</span>
+      </div>
+    </div>
     <div class="save-row">
       <button class="save-btn" onclick="saveSettings()">Save settings</button>
       <span class="save-status" id="save-status">Settings saved</span>
     </div>
+  </div>
+
+  <!-- User management (admin only) -->
+  <div class="users-section" id="users-section" style="display:none">
+    <div class="users-header">
+      <div class="section-title" style="margin-bottom:0">Manage users</div>
+    </div>
+    <div class="user-msg" id="user-msg"></div>
+    <div class="add-user-form">
+      <input type="text" id="new-username" placeholder="Username" autocomplete="off">
+      <input type="password" id="new-password" placeholder="Password" autocomplete="new-password">
+      <button onclick="addUser()">Add user</button>
+    </div>
+    <ul class="user-list" id="user-list"></ul>
   </div>
 
   <div class="last-updated">Last updated: <span id="timestamp">--</span></div>
@@ -437,6 +872,13 @@
       document.getElementById('set-temp-high').value = cfg.temp_high;
       document.getElementById('set-min-duty').value = cfg.min_duty;
       document.getElementById('set-poll').value = cfg.poll_interval;
+      document.getElementById('set-humidity-high').value = cfg.humidity_high || 70;
+      document.getElementById('humidity-trigger-toggle').checked = !!cfg.humidity_trigger;
+      // Highlight active profile
+      const active = cfg.active_profile || 'default';
+      document.querySelectorAll('.profile-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.profile === active);
+      });
     } catch(e) {
       console.error('Config error:', e);
     }
@@ -448,7 +890,9 @@
       temp_low: parseFloat(document.getElementById('set-temp-low').value),
       temp_high: parseFloat(document.getElementById('set-temp-high').value),
       min_duty: parseInt(document.getElementById('set-min-duty').value),
-      poll_interval: parseInt(document.getElementById('set-poll').value)
+      poll_interval: parseInt(document.getElementById('set-poll').value),
+      humidity_high: parseFloat(document.getElementById('set-humidity-high').value),
+      humidity_trigger: document.getElementById('humidity-trigger-toggle').checked
     };
     try {
       await fetch('/api/config', {
@@ -465,13 +909,211 @@
   }
 
   // Init
+  initTheme();
   loadSettings();
   fetchData();
   fetchHistory();
+  fetchSystemStats();
+  loadOverride();
+  initAdmin();
 
-  // Poll every 5 seconds
+  // Poll
   setInterval(fetchData, 5000);
   setInterval(fetchHistory, 30000);
+  setInterval(fetchSystemStats, 30000);
+
+  // ── User management (admin) ──
+  let isAdmin = false;
+
+  async function initAdmin() {
+    try {
+      const res = await fetch('/api/me');
+      const me = await res.json();
+      isAdmin = me.role === 'admin';
+      if (isAdmin) {
+        document.getElementById('users-section').style.display = '';
+        loadUsers();
+      }
+    } catch(e) { console.error('Me error:', e); }
+  }
+
+  function showUserMsg(text, type) {
+    const el = document.getElementById('user-msg');
+    el.textContent = text;
+    el.className = 'user-msg ' + type;
+    setTimeout(() => { el.className = 'user-msg'; }, 3000);
+  }
+
+  async function loadUsers() {
+    try {
+      const res = await fetch('/api/users');
+      const users = await res.json();
+      const list = document.getElementById('user-list');
+      list.innerHTML = '';
+      users.forEach(u => {
+        const li = document.createElement('li');
+        li.className = 'user-item';
+        const nameSpan = document.createElement('span');
+        const escaped = u.username.replace(/</g, '&lt;');
+        const badge = u.role === 'admin' ? ' <span class="user-you">ADMIN</span>' : '';
+        nameSpan.innerHTML = '<span class="user-name">' + escaped + '</span>' + badge;
+        li.appendChild(nameSpan);
+
+        const btn = document.createElement('button');
+        btn.className = 'delete-btn';
+        btn.textContent = 'Remove';
+        btn.onclick = () => deleteUser(u.username);
+        li.appendChild(btn);
+
+        list.appendChild(li);
+      });
+    } catch(e) {
+      console.error('Users error:', e);
+    }
+  }
+
+  async function addUser() {
+    const username = document.getElementById('new-username').value.trim();
+    const password = document.getElementById('new-password').value.trim();
+    if (!username || !password) {
+      showUserMsg('Username and password required', 'error');
+      return;
+    }
+    try {
+      const res = await fetch('/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        showUserMsg(data.error, 'error');
+        return;
+      }
+      document.getElementById('new-username').value = '';
+      document.getElementById('new-password').value = '';
+      showUserMsg('User "' + username + '" added', 'success');
+      loadUsers();
+    } catch(e) {
+      showUserMsg('Failed to add user', 'error');
+    }
+  }
+
+  async function deleteUser(username) {
+    if (!confirm('Remove user "' + username + '"?')) return;
+    try {
+      const res = await fetch('/api/users/' + encodeURIComponent(username), { method: 'DELETE' });
+      const data = await res.json();
+      if (!res.ok) {
+        showUserMsg(data.error, 'error');
+        return;
+      }
+      showUserMsg('User "' + username + '" removed', 'success');
+      loadUsers();
+    } catch(e) {
+      showUserMsg('Failed to remove user', 'error');
+    }
+  }
+
+  // ── Theme ──
+  function initTheme() {
+    if (localStorage.getItem('sparkfan-theme') === 'light') {
+      document.documentElement.classList.add('light');
+      updateThemeIcon(true);
+      updateChartTheme();
+    }
+  }
+
+  function toggleTheme() {
+    const isLight = document.documentElement.classList.toggle('light');
+    localStorage.setItem('sparkfan-theme', isLight ? 'light' : 'dark');
+    updateThemeIcon(isLight);
+    updateChartTheme();
+  }
+
+  function updateThemeIcon(isLight) {
+    const icon = document.getElementById('theme-icon');
+    icon.innerHTML = isLight
+      ? '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>'
+      : '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+  }
+
+  function updateChartTheme() {
+    const isLight = document.documentElement.classList.contains('light');
+    const gridColor = isLight ? 'rgba(229,231,235,0.8)' : 'rgba(30,34,48,0.8)';
+    const tickColor = isLight ? '#9ca3af' : '#4b5563';
+    chart.options.scales.x.grid.color = gridColor;
+    chart.options.scales.y.grid.color = gridColor;
+    chart.options.scales.x.ticks.color = tickColor;
+    chart.options.scales.y.ticks.color = tickColor;
+    chart.options.plugins.legend.labels.color = isLight ? '#9ca3af' : '#6b7280';
+    chart.update('none');
+  }
+
+  // ── Profiles ──
+  async function applyProfile(name) {
+    try {
+      const res = await fetch('/api/profiles/' + encodeURIComponent(name), { method: 'POST' });
+      if (res.ok) {
+        document.querySelectorAll('.profile-btn').forEach(btn =>
+          btn.classList.toggle('active', btn.dataset.profile === name));
+        loadSettings();
+        document.getElementById('override-toggle').checked = false;
+        document.getElementById('override-controls').style.display = 'none';
+      }
+    } catch(e) { console.error('Profile error:', e); }
+  }
+
+  // ── Override ──
+  async function toggleOverride() {
+    const enabled = document.getElementById('override-toggle').checked;
+    const speed = parseInt(document.getElementById('override-speed').value);
+    document.getElementById('override-controls').style.display = enabled ? 'flex' : 'none';
+    try {
+      await fetch('/api/override', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ enabled, speed })
+      });
+    } catch(e) { console.error('Override error:', e); }
+  }
+
+  async function setOverrideSpeed() {
+    const speed = parseInt(document.getElementById('override-speed').value);
+    try {
+      await fetch('/api/override', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ enabled: true, speed })
+      });
+    } catch(e) { console.error('Override error:', e); }
+  }
+
+  function updateOverrideLabel(val) {
+    document.getElementById('override-value').textContent = val + '%';
+  }
+
+  async function loadOverride() {
+    try {
+      const res = await fetch('/api/override');
+      const o = await res.json();
+      document.getElementById('override-toggle').checked = o.enabled;
+      document.getElementById('override-speed').value = o.speed;
+      document.getElementById('override-value').textContent = o.speed + '%';
+      document.getElementById('override-controls').style.display = o.enabled ? 'flex' : 'none';
+    } catch(e) { console.error('Override load error:', e); }
+  }
+
+  // ── System stats ──
+  async function fetchSystemStats() {
+    try {
+      const res = await fetch('/api/system');
+      const s = await res.json();
+      document.getElementById('cpu-temp').textContent = s.cpu_temp;
+      document.getElementById('sys-uptime').textContent = s.uptime;
+      document.getElementById('sys-mem').textContent = s.mem_used + ' / ' + s.mem_total + ' MB';
+    } catch(e) { console.error('System stats error:', e); }
+  }
 </script>
 
 </body>
