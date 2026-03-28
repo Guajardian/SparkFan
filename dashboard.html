@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SparkFan — Dashboard</title>
+<title>AeroCore — Dashboard</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;600;700&display=swap');
 
@@ -736,7 +736,7 @@
 
 <div class="header">
   <div class="header-left">
-    <span class="logo">SparkFan</span>
+    <span class="logo">AeroCore</span>
     <span class="status-dot"></span>
     <span class="status-text">Controller active</span>
   </div>
@@ -1244,7 +1244,7 @@
 
   // ── Theme ──
   function initTheme() {
-    if (localStorage.getItem('sparkfan-theme') === 'light') {
+    if (localStorage.getItem('aerocore-theme') === 'light') {
       document.documentElement.classList.add('light');
       updateThemeIcon(true);
       updateChartTheme();
@@ -1253,7 +1253,7 @@
 
   function toggleTheme() {
     const isLight = document.documentElement.classList.toggle('light');
-    localStorage.setItem('sparkfan-theme', isLight ? 'light' : 'dark');
+    localStorage.setItem('aerocore-theme', isLight ? 'light' : 'dark');
     updateThemeIcon(isLight);
     updateChartTheme();
   }
@@ -1370,20 +1370,20 @@
 
   function loadUserSettings() {
     // Temperature unit
-    const unit = localStorage.getItem('sparkfan-temp-unit') || 'C';
+    const unit = localStorage.getItem('aerocore-temp-unit') || 'C';
     document.querySelectorAll('input[name="temp-unit"]').forEach(r => {
       r.checked = r.value === unit;
     });
     document.getElementById('alert-unit-label').textContent = unit === 'F' ? '°F' : '°C';
 
     // Refresh rate
-    const rate = localStorage.getItem('sparkfan-refresh-rate') || '5000';
+    const rate = localStorage.getItem('aerocore-refresh-rate') || '5000';
     document.getElementById('refresh-rate').value = rate;
 
     // Temperature alert
-    const alertEnabled = localStorage.getItem('sparkfan-alert-enabled') === 'true';
+    const alertEnabled = localStorage.getItem('aerocore-alert-enabled') === 'true';
     document.getElementById('alert-enabled').checked = alertEnabled;
-    const alertTemp = localStorage.getItem('sparkfan-alert-temp') || '50';
+    const alertTemp = localStorage.getItem('aerocore-alert-temp') || '50';
     document.getElementById('alert-temp').value = alertTemp;
   }
 
@@ -1435,34 +1435,34 @@
   // Temperature unit
   document.querySelectorAll('input[name="temp-unit"]').forEach(r => {
     r.addEventListener('change', function() {
-      localStorage.setItem('sparkfan-temp-unit', this.value);
+      localStorage.setItem('aerocore-temp-unit', this.value);
       document.getElementById('alert-unit-label').textContent = this.value === 'F' ? '°F' : '°C';
       fetchData(); // Refresh displayed values
     });
   });
 
   function convertTemp(celsius) {
-    const unit = localStorage.getItem('sparkfan-temp-unit') || 'C';
+    const unit = localStorage.getItem('aerocore-temp-unit') || 'C';
     if (unit === 'F') return Math.round((celsius * 9/5 + 32) * 10) / 10;
     return celsius;
   }
 
   function getTempUnit() {
-    return (localStorage.getItem('sparkfan-temp-unit') || 'C') === 'F' ? '°F' : '°C';
+    return (localStorage.getItem('aerocore-temp-unit') || 'C') === 'F' ? '°F' : '°C';
   }
 
   // Dashboard refresh rate
   let dataInterval = setInterval(fetchData, 5000);
   document.getElementById('refresh-rate').addEventListener('change', function() {
     const rate = parseInt(this.value);
-    localStorage.setItem('sparkfan-refresh-rate', rate);
+    localStorage.setItem('aerocore-refresh-rate', rate);
     clearInterval(dataInterval);
     dataInterval = setInterval(fetchData, rate);
   });
 
   // Restore saved refresh rate on load
   (function restoreRefreshRate() {
-    const saved = localStorage.getItem('sparkfan-refresh-rate');
+    const saved = localStorage.getItem('aerocore-refresh-rate');
     if (saved) {
       clearInterval(dataInterval);
       dataInterval = setInterval(fetchData, parseInt(saved));
@@ -1471,26 +1471,26 @@
 
   // Temperature alert
   document.getElementById('alert-enabled').addEventListener('change', function() {
-    localStorage.setItem('sparkfan-alert-enabled', this.checked);
+    localStorage.setItem('aerocore-alert-enabled', this.checked);
     if (this.checked && 'Notification' in window && Notification.permission === 'default') {
       Notification.requestPermission();
     }
   });
   document.getElementById('alert-temp').addEventListener('change', function() {
-    localStorage.setItem('sparkfan-alert-temp', this.value);
+    localStorage.setItem('aerocore-alert-temp', this.value);
   });
 
   let lastAlertTime = 0;
   function checkTempAlert(tempC) {
-    if (localStorage.getItem('sparkfan-alert-enabled') !== 'true') return;
-    const threshold = parseFloat(localStorage.getItem('sparkfan-alert-temp') || '50');
-    const unit = localStorage.getItem('sparkfan-temp-unit') || 'C';
+    if (localStorage.getItem('aerocore-alert-enabled') !== 'true') return;
+    const threshold = parseFloat(localStorage.getItem('aerocore-alert-temp') || '50');
+    const unit = localStorage.getItem('aerocore-temp-unit') || 'C';
     const compare = unit === 'F' ? convertTemp(tempC) : tempC;
     const now = Date.now();
     if (compare >= threshold && now - lastAlertTime > 60000) {
       lastAlertTime = now;
       if ('Notification' in window && Notification.permission === 'granted') {
-        new Notification('SparkFan — Temperature Alert', {
+        new Notification('AeroCore — Temperature Alert', {
           body: 'Temperature reached ' + compare + (unit === 'F' ? '°F' : '°C'),
           icon: '🌡️'
         });

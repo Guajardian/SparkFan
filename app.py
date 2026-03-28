@@ -17,6 +17,7 @@ import RPi.GPIO as GPIO
 # ─── Config file ───
 CONFIG_FILE = os.path.join(os.path.dirname(__file__), "config.json")
 USERS_FILE = os.path.join(os.path.dirname(__file__), "users.json")
+SECRET_FILE = os.path.join(os.path.dirname(__file__), ".secret_key")
 
 DEFAULT_CONFIG = {
     "temp_low": 25.0,
@@ -70,8 +71,17 @@ def save_users(users):
         json.dump(users, f, indent=2)
 
 # ─── App setup ───
+def load_secret_key():
+    if os.path.exists(SECRET_FILE):
+        with open(SECRET_FILE, "rb") as f:
+            return f.read()
+    key = os.urandom(24)
+    with open(SECRET_FILE, "wb") as f:
+        f.write(key)
+    return key
+
 app = Flask(__name__, template_folder=".")
-app.secret_key = os.urandom(24)
+app.secret_key = load_secret_key()
 
 login_manager = LoginManager()
 login_manager.init_app(app)

@@ -1,6 +1,6 @@
-# SparkFan
+# AeroCore
 
-A Raspberry Pi-powered smart fan controller with a live web dashboard. SparkFan reads temperature, humidity, and pressure from a BME280 sensor and automatically adjusts PWM fan speed using a configurable fan curve — all managed through a clean, dark-themed web UI.
+A Raspberry Pi-powered smart fan controller with a live web dashboard. AeroCore reads temperature, humidity, and pressure from a BME280 sensor and automatically adjusts PWM fan speed using a configurable fan curve — all managed through a clean, dark-themed web UI.
 
 ## Features
 
@@ -59,8 +59,8 @@ GND  ────────── GND (shared with Pi)
 
 ```bash
 # Clone the repo
-git clone https://github.com/<your-username>/SparkFan.git
-cd SparkFan
+git clone https://github.com/<your-username>/AeroCore.git
+cd AeroCore
 
 # Install dependencies
 pip install -r requirements.txt
@@ -113,20 +113,20 @@ pwm = GPIO.PWM(18, 25000)   # ← change pin number
 
 ### Running on Boot (systemd)
 
-To start SparkFan automatically on boot, create a systemd service:
+To start AeroCore automatically on boot, create a systemd service:
 
 ```bash
-sudo nano /etc/systemd/system/sparkfan.service
+sudo nano /etc/systemd/system/AeroCore.service
 ```
 
 ```ini
 [Unit]
-Description=SparkFan Fan Controller
+Description=AeroCore Fan Controller
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python3 /home/pi/SparkFan/app.py
-WorkingDirectory=/home/pi/SparkFan
+ExecStart=/usr/bin/python3 /home/pi/AeroCore/app.py
+WorkingDirectory=/home/pi/AeroCore
 User=pi
 Restart=on-failure
 RestartSec=5
@@ -139,8 +139,8 @@ Then enable and start it:
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl enable sparkfan
-sudo systemctl start sparkfan
+sudo systemctl enable AeroCore
+sudo systemctl start AeroCore
 ```
 
 > **Note:** Adjust the paths above if you cloned the repo to a different location or use a different username.
@@ -148,7 +148,7 @@ sudo systemctl start sparkfan
 ## Project Structure
 
 ```
-SparkFan/
+AeroCore/
 ├── app.py              # Flask server, sensor loop, API routes
 ├── requirements.txt    # Python dependencies
 ├── config.json         # Fan curve & poll settings (auto-generated)
@@ -180,7 +180,7 @@ SparkFan/
 |---------|----------|
 | `ModuleNotFoundError: No module named 'board'` | Install the Adafruit Blinka library: `pip install adafruit-blinka` |
 | `ModuleNotFoundError: No module named 'RPi'` | Install RPi.GPIO: `pip install RPi.GPIO` |
-| `TemplateNotFound` error | Make sure you're running `python app.py` from the SparkFan directory |
+| `TemplateNotFound` error | Make sure you're running `python app.py` from the AeroCore directory |
 | BME280 not detected | Run `i2cdetect -y 1` to verify the sensor address; ensure I2C is enabled |
 | Fan not spinning | Check that the fan has external power (12V/5V) and shares a ground with the Pi |
 | Permission denied on GPIO | Run with `sudo` or add your user to the `gpio` group: `sudo usermod -aG gpio $USER` |
